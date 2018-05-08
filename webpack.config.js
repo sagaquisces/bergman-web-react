@@ -12,6 +12,16 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.js']
+    extensions: ['.js']
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.js?$/,
+        loader: "babel-loader",
+        exclude: /node_modules/,
+      }
+    ]
   }
 }

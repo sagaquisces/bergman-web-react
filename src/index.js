@@ -1,9 +1,10 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-const header = React.createElement('h1', {}, 'Lisa Bergman :: Pianist, Producer')
+const Header = () =>
+  <h1>Lisa Bergman :: Pianist, Producer</h1>
 
 render(
-  header,
+  <Header />,
   document.getElementById('root')
 )
