@@ -5,12 +5,12 @@
 
 .bgimg2 {
   background-image: url('../images/pexels-photo-164821.jpeg');
-  display: none;
+  display: block;
 }
 
 .bgimg3 {
   background-image: url('../images/pexels-photo-534283.jpeg');
-  display: none;
+  display: block;
 }
 
 .bgimg1, .bgimg2, .bgimg3 {
