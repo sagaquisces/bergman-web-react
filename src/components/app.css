@@ -1,0 +1,23 @@
+.bgimg1 {
+  background-image: url('../images/Adult-Piano-Concert.jpeg');
+  display: block;
+}
+
+.bgimg2 {
+  background-image: url('../images/pexels-photo-164821.jpeg');
+  display: none;
+}
+
+.bgimg3 {
+  background-image: url('../images/pexels-photo-534283.jpeg');
+  display: none;
+}
+
+.bgimg1, .bgimg2, .bgimg3 {
+  height: 100%;
+  opacity: .2;
+  background-position: center;
+  background-size: cover;
+  background-color: olive;
+  position: relative;
+}

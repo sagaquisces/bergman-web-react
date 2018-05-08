@@ -1,10 +1,24 @@
 import React from 'react'
-import { render } from 'react-dom'
+import ReactDOM from 'react-dom'
+import App from './components/App'
+import './index.css'
+import { AppContainer } from 'react-hot-loader'
 
-const Header = () =>
-  <h1>Lisa Bergman :: Pianist, Producer</h1>
+const render = (Component) => {
+  ReactDOM.render(
+    <AppContainer>
+      <Component />
+    </AppContainer>,
+    document.getElementById('root')
+  )
+}
 
-render(
-  <Header />,
-  document.getElementById('root')
-)
+render(App)
+
+/*eslint-disable */
+if (module.hot) {
+  module.hot.accept('./components/App', () => {
+    render(App)
+  })
+}
+/*eslint-enable */
