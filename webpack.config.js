@@ -1,29 +1,19 @@
 const webpack = require ('webpack')
-const { resolve } = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
 
 module.exports = {
-  entry: [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    resolve(__dirname, "src", "index.js")
-  ],
+  entry: './src/index.js',
 
   output: {
-    filename: 'app.bundle.js',
-    path: resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'build'),
+    filename: 'index.bundle.js',
     publicPath: '/'
   },
-
-  resolve: {
-    extensions: ['.js']
-  },
-
-  devtool: '#source-map',
+  devtool: 'inline-source-map',
 
   devServer: {
-    contentBase: resolve(__dirname, 'build'),
+    contentBase: './build',
+    port: 3000,
     publicPath: '/'
   },
 
@@ -67,16 +57,5 @@ module.exports = {
         ]
       }
     ]
-  },
-
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
-    new HtmlWebpackPlugin({
-      template:'template.ejs',
-      appMountId: 'root',
-      title: 'Lisa Bergman :: Pianist, Producer',
-      filename: resolve(__dirname, "build", "index.html")
-    })
-  ]
+  }
 }

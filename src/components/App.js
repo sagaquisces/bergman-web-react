@@ -6,6 +6,7 @@ import WebFont from 'webfontloader'
 import Navigation from './Navigation'
 import Slideshow from './Slideshow'
 import Slide from './Slide'
+import '../firebase/firebase'
 
 WebFont.load({
   google: {

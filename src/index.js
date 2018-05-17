@@ -1,24 +1,6 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
 import App from './components/App'
 import './index.css'
-import { AppContainer } from 'react-hot-loader'
 
-const render = (Component) => {
-  ReactDOM.render(
-    <AppContainer>
-      <Component />
-    </AppContainer>,
-    document.getElementById('root')
-  )
-}
-
-render(App)
-
-/*eslint-disable */
-if (module.hot) {
-  module.hot.accept('./components/App', () => {
-    render(App)
-  })
-}
-/*eslint-enable */
+render(<App/>, document.getElementById('root'))
