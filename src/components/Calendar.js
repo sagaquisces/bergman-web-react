@@ -1,16 +1,12 @@
 import React from 'react'
+import EventList from './EventList'
+import EventListFilters from './EventListFilters'
 
 const Calendar = (props) => 
   <div>
     <h1>Calendar</h1>
-    <p>Blah</p>
-    <p>Blah</p>
-    <p>Blah</p>
-    <p>Blah</p>
-    <p>Blah</p>
-    <p>Blah</p>
-    <p>Blah</p>
-    <p>Blah</p>
+    <EventListFilters />
+    <EventList />
   </div>
 
 

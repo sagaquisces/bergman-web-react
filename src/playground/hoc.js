@@ -8,14 +8,22 @@ const Info = (props) => (
   </div>
 )
 
-const withAdminWarning = (WrappedComponent) => {
+const withId = (WrappedComponent) => {
   return (props) => (
-    <div>
-      { props.isAdmin && <p>This is private info. Please don't share.</p> }
-      <WrappedComponent {...props}/>
+    <div id={props.id}>
+      <WrappedComponent {...props} />
     </div>
   )
 }
+
+// const withAdminWarning = (WrappedComponent) => {
+//   return (props) => (
+//     <div>
+//       { props.isAdmin && <p>This is private info. Please don't share.</p> }
+//       <WrappedComponent {...props}/>
+//     </div>
+//   )
+// }
 
 const requireAuthentication = (WrappedComponent) => {
   return (props) => (

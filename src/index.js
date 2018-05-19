@@ -15,6 +15,10 @@ const eventTwo = store.dispatch(addEvent({ description: 'Lisa plays with her fri
 
 store.dispatch(setTextFilter('Lisa'))
 
+setTimeout(() => {
+  store.dispatch(setTextFilter('violin'))
+}, 3000)
+
 const state = store.getState()
 const visibleEvents = getVisibleEvents(state.events, state.filters)
 
