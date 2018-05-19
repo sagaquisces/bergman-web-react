@@ -6,6 +6,7 @@ import WebFont from 'webfontloader'
 import Navigation from './Navigation'
 import Slideshow from './Slideshow'
 import Slide from './Slide'
+import CalendarSection from './CalendarSection'
 import '../firebase/firebase'
 
 WebFont.load({
@@ -41,17 +42,8 @@ const App = () => {
           <p>Blah</p>
           <p>Blah</p>
         </div>
-        <div className="w3-container w3-content w3-center w3-padding-64" style={{maxWidth:'800px'}} id="calendar">
-          <h1>Calendar</h1>
-          <p>Blah</p>
-          <p>Blah</p>
-          <p>Blah</p>
-          <p>Blah</p>
-          <p>Blah</p>
-          <p>Blah</p>
-          <p>Blah</p>
-          <p>Blah</p>
-        </div>
+        <CalendarSection sectionId='calendar' />
+          
         <div className="w3-container w3-content w3-center w3-padding-64" style={{maxWidth:'800px'}} id="contact">
           <h1>Contact</h1>
           <p>Blah</p>
