@@ -1,5 +1,9 @@
-body, h1 {
+body, h1, h2, h3 {
   font-family: "Playfair Display, sans-serif"
+}
+
+textarea {
+  resize: none
 }
 
 .bgimg1 {

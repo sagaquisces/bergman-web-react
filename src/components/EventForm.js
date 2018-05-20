@@ -1,33 +1,85 @@
+import 'react-dates/initialize'
 import React from 'react'
+import moment from 'moment'
+import { SingleDatePicker } from 'react-dates'
+import 'react-dates/lib/css/_datepicker.css'
+
+// const date = new Date()
+const now = moment()
+console.log(now.format("ddd D MMM YYYY"))
+
+// Fri 27 Nov 2016
 
 export default class EventForm extends React.Component {
+  state = {
+    title: '',
+    date: moment(),
+    description: '',
+    createdAt: moment(),
+    calendarFocused: false
+  }
+  onTitleChange = (e) => {
+    const title = e.target.value
+    this.setState(() => ({
+      title
+    }))
+  }
+  onDateChange = (date) => {
+    this.setState(() => ({
+      date
+    }))
+  }
+  onDescriptionChange = (e) => {
+    const description = e.target.value
+    this.setState(() => ({
+      description
+    }))
+  }
+  onCalendarFocusChange = ({ focused }) => {
+    this.setState(() => ({ calendarFocused: focused }))
+  }
   render() {
     return (
-      
       <form class='w3-container'>
         <p>
           <input
             className='w3-input'
             type='text'
             placeholder='Title'
+            value={this.state.title}
+            onChange={this.onTitleChange}
             autoFocus
           />
         </p>
+{/*
         <p>
           <input
             className='w3-input'
             type='number'
             placeholder='Date'
+            value={this.state.date}
+            onChange={this.onDateChange}
           />
         </p>
+*/}
+        <SingleDatePicker 
+          date={this.state.date}
+          onDateChange={this.onDateChange}
+          focused={this.state.calendarFocused}
+          onFocusChange={this.onCalendarFocusChange}
+        />
         <p>
           <textarea
             className='w3-input'
             placeholder='Description'
+            value={this.state.description}
+            onChange={this.onDescriptionChange}
           ></textarea>
         </p>
+        <p>
+          <button>Add Event</button>
+        </p>
       </form>
-      
     )
   }
 }
