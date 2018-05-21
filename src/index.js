@@ -13,11 +13,11 @@ const store = configureStore()
 const eventOne = store.dispatch(addEvent({ description: 'Plays in Rossini and Wagner for one piano only.', title: 'Orchestration Reductions', date: 1000}))
 const eventTwo = store.dispatch(addEvent({ description: 'Lisa plays with her friends', title: 'Friends', date: -2000}))
 
-store.dispatch(setTextFilter('Lisa'))
+// store.dispatch(setTextFilter('Lisa'))
 
-setTimeout(() => {
-  store.dispatch(setTextFilter('violin'))
-}, 3000)
+// setTimeout(() => {
+//   store.dispatch(setTextFilter('violin'))
+// }, 3000)
 
 const state = store.getState()
 const visibleEvents = getVisibleEvents(state.events, state.filters)

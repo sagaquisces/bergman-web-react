@@ -27,7 +27,7 @@ export const removeEvent = ({ id } = {}) => ({
 
 // EDIT_EVENT
 export const editEvent = (id, updates) => ({
-  type: 'EDIT_EXPENSE',
+  type: 'EDIT_EVENT',
   id,
   updates
 })

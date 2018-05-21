@@ -11,14 +11,20 @@ console.log(now.format("ddd D MMM YYYY"))
 // Fri 27 Nov 2016
 
 export default class EventForm extends React.Component {
-  state = {
-    title: '',
-    date: moment(),
-    description: '',
-    createdAt: moment(),
-    calendarFocused: false,
-    error: ''
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      title: props.event ? props.event.title : '',
+      date: props.event ? moment(props.event.date) : moment(),
+      description: props.event ? props.event.description: '',
+      createdAt: props.event ? moment(props.event.createdAt) : moment(),
+      calendarFocused: false,
+      error: ''
+    }
   }
+  
+  
   onTitleChange = (e) => {
     const title = e.target.value
     this.setState(() => ({
@@ -108,7 +114,7 @@ export default class EventForm extends React.Component {
           </p>
 
           <p>
-            <button>Add Event</button>
+            <button className='w3-btn w3-green'>Add Event</button>
           </p>
         </form>
       </div>

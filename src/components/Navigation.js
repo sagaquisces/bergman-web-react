@@ -5,7 +5,7 @@ class Navigation extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      style: 'border'
+      style: 'highlight'
     }
   }
 
@@ -19,28 +19,6 @@ class Navigation extends Component {
           <div className="w3-bar w3-black w3-card">
             <a className="w3-bar-item w3-btn w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i className="fa fa-bars"></i></a>
 
-            <button 
-              onClick={() => 
-                this.setState(() => ({
-                  style: 'highlight'
-                }))
-              }
-              className="w3-bar-item w3-btn w3-teal w3-round-xxlarge w3-tiny w3-right"
-              disabled={this.state.style==='highlight'}
-            >
-              click for highlight nav
-            </button>
-            <button 
-              onClick={() => 
-                this.setState(() => ({
-                  style: 'border'
-                }))
-              }
-              className="w3-bar-item w3-btn w3-teal w3-round-xxlarge w3-tiny w3-right"
-              disabled={this.state.style==='border'}
-            >
-              click for border nav
-            </button>
 
             <a href="#" className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle)}>HOME</a>
             <a href="#bio" className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}>BIO</a>

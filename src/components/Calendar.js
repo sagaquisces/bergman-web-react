@@ -41,7 +41,6 @@ class Calendar extends React.Component {
     return (
       <div>
         <h1>Calendar</h1>
-        <EventListFilters />
         <EventList />
         <button onClick={this.handleOpenModal}>Add Event</button>
         <Modal
