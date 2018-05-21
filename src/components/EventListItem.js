@@ -3,6 +3,7 @@
 import React from 'react'
 import Modal from 'react-modal'
 import EditEvent from './EditEvent'
+import moment from 'moment'
 import { connect } from 'react-redux'
 import { removeEvent } from '../actions/events'
 
@@ -39,14 +40,27 @@ class EventListItem extends React.Component {
   render() {
     const { dispatch, id, title, description, date } = this.props
     return (
-      <div>
-        <small>{date}</small>
-        <h3>{title}</h3>
-        <p>{description}</p>
-        <button onClick={this.handleOpenModal}>Edit Event</button>
-        <button onClick={() => {
-          dispatch(removeEvent( {id} ))
-        }}>Remove</button>
+      <div className="w3-third w3-margin-bottom">
+        <header className="w3-container w3-red">
+          <h3>{moment(date).format('ddd DD MMM YYYY').toUpperCase()}</h3>
+        </header>
+        <div className='w3-container w3-white'>
+          <p><b>{title}</b></p>
+          <p className='w3-opacity'>{moment(date).format('ddd DD MMM YYYY').to}</p>
+          <p>{description}</p>
+          <button 
+            className="w3-button w3-teal w3-margin-bottom"
+            onClick={this.handleOpenModal}
+          >Edit Event
+          </button>
+          <button
+            className="w3-button w3-teal w3-margin-bottom"
+            onClick={() => {
+              dispatch(removeEvent( {id} ))
+            }}
+          >Remove</button>
+        </div>
+        
         <Modal
           isOpen={this.state.showModal}
           contentLabel="Edit event"
@@ -55,7 +69,6 @@ class EventListItem extends React.Component {
         >
           <EditEvent {...this.props} closeModal={this.handleCloseModal}/>
         </Modal>
-        
       </div>
     )
   }

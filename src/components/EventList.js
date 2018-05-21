@@ -1,16 +1,38 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import EventListItem from './EventListItem'
+import EventRow from './EventRow'
 import selectExpenses from '../selectors/events'
 
-const EventList = (props) => (
-  <div>
-    <h2>Event List</h2>
-    {props.events.map((event) => {
-      return <EventListItem key={event.id} {...event}/>
-    })}
-  </div>
-)
+const EventList = (props) => {
+  console.log(props.events)
+
+  const createGroupedArray = (arr, chunkSize) => {
+    let groups = [], i
+    for (i=0; i<arr.length; i+=chunkSize) {
+      groups.push(arr.slice(i, i + chunkSize))
+    }
+    return groups
+  }
+
+  const groupedArr = createGroupedArray(props.events, 3)
+  
+  console.log(groupedArr)
+
+  return (
+    <div>
+      {groupedArr.map((chunk) => 
+        <EventRow>
+          {chunk.map((event) => {
+            return <EventListItem key={event.id} {...event}/>
+          })}
+        </EventRow>
+      )}
+
+      
+    </div>
+  )
+}
 
 const mapStateToProps = (state) => {
   return {

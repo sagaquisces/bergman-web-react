@@ -10,8 +10,15 @@ import './index.css'
 
 const store = configureStore()
 
-const eventOne = store.dispatch(addEvent({ description: 'Plays in Rossini and Wagner for one piano only.', title: 'Orchestration Reductions', date: 1000}))
-const eventTwo = store.dispatch(addEvent({ description: 'Lisa plays with her friends', title: 'Friends', date: -2000}))
+const eventOne = store.dispatch(addEvent({ description: 'Plays in Rossini and Wagner for one piano only.', title: 'Orchestration Reductions', date: 1526939359976}))
+const eventTwo = store.dispatch(addEvent({ description: 'Lisa plays with her friends', title: 'Friends', date: 1526939767976}))
+const eventThree = store.dispatch(addEvent({ description: 'Plays in Rossini and Wagner for one piano only.', title: 'Orchestration Reductions', date: 1526933959976}))
+const eventFour = store.dispatch(addEvent({ description: 'Lisa plays with her friends', title: 'Friends', date: 1526399359976}))
+const eventFive = store.dispatch(addEvent({ description: 'Plays in Rossini and Wagner for one piano only.', title: 'Orchestration Reductions', date: -1526939359976}))
+const eventSix = store.dispatch(addEvent({ description: 'Lisa plays with her friends', title: 'Friends', date: -2000}))
+const eventSeven = store.dispatch(addEvent({ description: 'Plays in Rossini and Wagner for one piano only.', title: 'Orchestration Reductions', date: -1526939359976}))
+const eventEight = store.dispatch(addEvent({ description: 'Lisa plays with her friends', title: 'Friends', date: -2000}))
+
 
 // store.dispatch(setTextFilter('Lisa'))
 

@@ -40,9 +40,9 @@ class Calendar extends React.Component {
   render() {
     return (
       <div>
-        <h1>Calendar</h1>
+        <h2 className='w3-wide w3-center'>CALENDAR</h2>
+        <button className="w3-button w3-teal" onClick={this.handleOpenModal}>Add Event</button>
         <EventList />
-        <button onClick={this.handleOpenModal}>Add Event</button>
         <Modal
           isOpen={this.state.showModal}
           contentLabel="Add event"

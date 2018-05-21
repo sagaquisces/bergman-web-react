@@ -11,6 +11,7 @@ const EditEvent = (props) =>
     <EventForm 
       event={props}
       onSubmit={(event) => {
+        console.log('onSubmit')
         props.dispatch(editEvent(props.id, event))
       }}
       closeModal={props.closeModal}

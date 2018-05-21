@@ -114,7 +114,7 @@ export default class EventForm extends React.Component {
           </p>
 
           <p>
-            <button className='w3-btn w3-green'>Add Event</button>
+            <button className='w3-btn w3-green'>{this.props.event ? 'Edit': 'Add'} Event</button>
           </p>
         </form>
       </div>
