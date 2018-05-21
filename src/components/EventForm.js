@@ -58,14 +58,15 @@ export default class EventForm extends React.Component {
         createdAt: this.state.createdAt.valueOf(),
         date: this.state.date.valueOf()
       })
+      this.props.closeModal()
     }
   }
   render() {
     return (
       <div>
-        {this.state.error && <p>{this.state.error}</p>}
+        
         <form onSubmit={this.onSubmit} class='w3-container'>
-          
+          {this.state.error && <p>{this.state.error}</p>}
           <p>
             <input
               className='w3-input'
@@ -86,18 +87,7 @@ export default class EventForm extends React.Component {
               onChange={this.onDateChange}
             />
           </p>
-  */}
-          <p>
-            <SingleDatePicker 
-              className='w3-input'
-              date={this.state.date}
-              onDateChange={this.onDateChange}
-              focused={this.state.calendarFocused}
-              onFocusChange={this.onCalendarFocusChange}
-              numberOfMonths={1}
-              />
-          </p>
-          
+  */}          
           <p>
             <textarea
               className='w3-input'
@@ -106,6 +96,17 @@ export default class EventForm extends React.Component {
               onChange={this.onDescriptionChange}
             ></textarea>
           </p>
+          <p>
+            <SingleDatePicker 
+              placeholder='Enter event date'
+              date={this.state.date}
+              onDateChange={this.onDateChange}
+              focused={this.state.calendarFocused}
+              onFocusChange={this.onCalendarFocusChange}
+              numberOfMonths={1}
+            />
+          </p>
+
           <p>
             <button>Add Event</button>
           </p>
