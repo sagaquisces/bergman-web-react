@@ -16,7 +16,8 @@ export default class EventForm extends React.Component {
     date: moment(),
     description: '',
     createdAt: moment(),
-    calendarFocused: false
+    calendarFocused: false,
+    error: ''
   }
   onTitleChange = (e) => {
     const title = e.target.value
@@ -25,9 +26,11 @@ export default class EventForm extends React.Component {
     }))
   }
   onDateChange = (date) => {
-    this.setState(() => ({
-      date
-    }))
+    if(date) {
+      this.setState(() => ({
+        date
+      }))
+    }
   }
   onDescriptionChange = (e) => {
     const description = e.target.value
@@ -38,48 +41,76 @@ export default class EventForm extends React.Component {
   onCalendarFocusChange = ({ focused }) => {
     this.setState(() => ({ calendarFocused: focused }))
   }
+  onSubmit = (e) => {
+    e.preventDefault()
+
+    if(!this.state.title || !this.state.description) {
+      this.setState(() => ({
+        error: 'Please provide title of event and description.'
+      }))
+    } else {
+      this.setState(() => ({
+        error: ''
+      }))
+      this.props.onSubmit({
+        title: this.state.title,
+        description: this.state.description,
+        createdAt: this.state.createdAt.valueOf(),
+        date: this.state.date.valueOf()
+      })
+    }
+  }
   render() {
     return (
-      <form class='w3-container'>
-        <p>
-          <input
-            className='w3-input'
-            type='text'
-            placeholder='Title'
-            value={this.state.title}
-            onChange={this.onTitleChange}
-            autoFocus
-          />
-        </p>
-{/*
-        <p>
-          <input
-            className='w3-input'
-            type='number'
-            placeholder='Date'
-            value={this.state.date}
-            onChange={this.onDateChange}
-          />
-        </p>
-*/}
-        <SingleDatePicker 
-          date={this.state.date}
-          onDateChange={this.onDateChange}
-          focused={this.state.calendarFocused}
-          onFocusChange={this.onCalendarFocusChange}
-        />
-        <p>
-          <textarea
-            className='w3-input'
-            placeholder='Description'
-            value={this.state.description}
-            onChange={this.onDescriptionChange}
-          ></textarea>
-        </p>
-        <p>
-          <button>Add Event</button>
-        </p>
-      </form>
+      <div>
+        {this.state.error && <p>{this.state.error}</p>}
+        <form onSubmit={this.onSubmit} class='w3-container'>
+          
+          <p>
+            <input
+              className='w3-input'
+              type='text'
+              placeholder='Title'
+              value={this.state.title}
+              onChange={this.onTitleChange}
+              autoFocus
+            />
+          </p>
+  {/*
+          <p>
+            <input
+              className='w3-input'
+              type='number'
+              placeholder='Date'
+              value={this.state.date}
+              onChange={this.onDateChange}
+            />
+          </p>
+  */}
+          <p>
+            <SingleDatePicker 
+              className='w3-input'
+              date={this.state.date}
+              onDateChange={this.onDateChange}
+              focused={this.state.calendarFocused}
+              onFocusChange={this.onCalendarFocusChange}
+              numberOfMonths={1}
+              />
+          </p>
+          
+          <p>
+            <textarea
+              className='w3-input'
+              placeholder='Description'
+              value={this.state.description}
+              onChange={this.onDescriptionChange}
+            ></textarea>
+          </p>
+          <p>
+            <button>Add Event</button>
+          </p>
+        </form>
+      </div>
     )
   }
 }
