@@ -24,6 +24,7 @@ class Navigation extends Component {
             <a href="#bio" className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}>BIO</a>
             <a href="#calendar" className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}>CALENDAR</a>
             <a href="#contact" className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}>CONTACT</a>
+            <a href="#login" className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}>LOGIN</a>
           </div>
         </div>
     

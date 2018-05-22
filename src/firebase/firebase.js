@@ -9,11 +9,15 @@ const config = {
   messagingSenderId: '1074229707301'
 }
 
-firebase.initializeApp(config)
+if (!firebase.apps.length) {
+  firebase.initializeApp(config)
+}
 
 const db = firebase.database()
 
-export { firebase, db as default }
+const auth = firebase.auth()
+
+export { db, auth, }
 // // child removed
 // db.ref('events').on('child_removed', (snapshot) => {
 //   console.log(snapshot.key, snapshot.val())

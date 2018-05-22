@@ -7,7 +7,7 @@ import Navigation from './Navigation'
 import Slideshow from './Slideshow'
 import Slide from './Slide'
 import CalendarSection from './CalendarSection'
-import '../firebase/firebase'
+import '../firebase'
 
 WebFont.load({
   google: {

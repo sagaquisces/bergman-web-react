@@ -1,4 +1,4 @@
-import db from '../firebase/firebase'
+import { db } from '../firebase'
 
 // componenet calls action generator
 // action generator returns object
@@ -25,8 +25,7 @@ export const startAddEvent = (eventData = {}) => {
       createdAt = 0 
     } = eventData
     const event = {title, date, description, createdAt}
-    
-    db.ref('events').push(event).then((ref) => {
+    db.doCreateEvent(event).then((ref) => {
       dispatch(addEvent({
         id: ref.key,
         ...event
@@ -43,7 +42,7 @@ export const removeEvent = ({ id } = {}) => ({
 
 export const startRemoveEvent = ({ id }) => {
   return (dispatch) => {
-    return db.ref(`events/${id}`).remove().then(() => {
+    return db.doRemoveEvent(id).then(() => {
       dispatch(removeEvent({ id }))
     })
   }
@@ -58,7 +57,7 @@ export const editEvent = (id, updates) => ({
 
 export const startEditEvent = (id, updates) => {
   return (dispatch) => {
-    return db.ref(`events/${id}`).update(updates).then(() => {
+    return db.doEditEvent(id, updates).then(() => {
       dispatch(editEvent(id, updates))
     })
   }
@@ -72,8 +71,7 @@ export const setEvents = (events) => ({
 
 export const startSetEvents = () => {
   return (dispatch) => {
-    return db.ref('events')
-      .once('value')
+    return db.onceGetEvents()
       .then((snapshot) => {
         const events = []
         
