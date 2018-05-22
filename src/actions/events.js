@@ -56,6 +56,14 @@ export const editEvent = (id, updates) => ({
   updates
 })
 
+export const startEditEvent = (id, updates) => {
+  return (dispatch) => {
+    return db.ref(`events/${id}`).update(updates).then(() => {
+      dispatch(editEvent(id, updates))
+    })
+  }
+}
+
 // SET_EVENTS
 export const setEvents = (events) => ({
   type: 'SET_EVENTS',
