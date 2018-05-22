@@ -41,6 +41,14 @@ export const removeEvent = ({ id } = {}) => ({
   id
 })
 
+export const startRemoveEvent = ({ id }) => {
+  return (dispatch) => {
+    return db.ref(`events/${id}`).remove().then(() => {
+      dispatch(removeEvent({ id }))
+    })
+  }
+}
+
 // EDIT_EVENT
 export const editEvent = (id, updates) => ({
   type: 'EDIT_EVENT',

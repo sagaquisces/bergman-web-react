@@ -5,7 +5,7 @@ import Modal from 'react-modal'
 import EditEvent from './EditEvent'
 import moment from 'moment'
 import { connect } from 'react-redux'
-import { removeEvent } from '../actions/events'
+import { startRemoveEvent } from '../actions/events'
 
 const customStyles = {
   content : {
@@ -56,7 +56,7 @@ class EventListItem extends React.Component {
           <button
             className="w3-button w3-teal w3-margin-bottom"
             onClick={() => {
-              dispatch(removeEvent( {id} ))
+              dispatch(startRemoveEvent( {id} ))
             }}
           >Remove</button>
         </div>
