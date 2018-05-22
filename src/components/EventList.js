@@ -5,7 +5,6 @@ import EventRow from './EventRow'
 import selectExpenses from '../selectors/events'
 
 const EventList = (props) => {
-  console.log(props.events)
 
   const createGroupedArray = (arr, chunkSize) => {
     let groups = [], i
@@ -16,8 +15,6 @@ const EventList = (props) => {
   }
 
   const groupedArr = createGroupedArray(props.events, 3)
-  
-  console.log(groupedArr)
 
   return (
     <div>

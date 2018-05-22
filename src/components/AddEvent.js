@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import EventForm from './EventForm'
-import { addEvent } from '../actions/events'
+import { startAddEvent } from '../actions/events'
 
 const AddEvent = (props) => (
   <div className="w3-card-4">
@@ -10,7 +10,7 @@ const AddEvent = (props) => (
     </div>
     <EventForm 
       onSubmit={(event) => {
-        props.dispatch(addEvent(event))
+        props.dispatch(startAddEvent(event))
       }}
       closeModal={props.closeModal}
     />
