@@ -52,22 +52,33 @@ class Navigation extends Component {
             <a href="#bio" className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}>BIO</a>
             <a href="#calendar" className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}>CALENDAR</a>
             <a href="#contact" className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}>CONTACT</a>
-            <button
-              className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}
-              onClick={this.handleOpenModal}
-            >
-              LOGIN
-            </button>
-            <Modal
-              isOpen={this.state.showModal}
-              contentLabel="Sign In"
-              style={customStyles}
-              onRequestClose={this.handleCloseModal}
-            >
-              <Login closeModal={this.handleCloseModal}/>
-            </Modal>
-            <button onClick={this.props.startLogout}>LOGOUT</button>
-          </div>
+            
+            
+            {this.props.uid ? 
+              <button
+                className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}
+                onClick={this.props.startLogout}
+              >
+                LOGOUT
+              </button> :
+              <div>
+                <button
+                  className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}
+                  onClick={this.handleOpenModal}
+                >
+                  LOGIN
+                </button>
+                <Modal
+                  isOpen={this.state.showModal}
+                  contentLabel="Sign In"
+                  style={customStyles}
+                  onRequestClose={this.handleCloseModal}
+                >
+                  <Login closeModal={this.handleCloseModal}/>
+                </Modal>
+              </div>
+            }
+            </div>
         </div>
     
         <div id="navDemo" className="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style={{marginTop:'46px'}}>
@@ -82,11 +93,17 @@ class Navigation extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    uid: state.auth.uid
+  }
+}
+
 const mapDispatchToProps = (dispatch) => ({
   startLogout: () => dispatch(startLogout())
 })
 
-export default connect(undefined, mapDispatchToProps)(Navigation)
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation)
 
 /* <div class="w3-top">
   <div class="w3-bar w3-black w3-card">

@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { connect } from 'react-redux'
 import Modal from 'react-modal'
 import EventList from './EventList'
 import EventListFilters from './EventListFilters'
@@ -41,7 +42,8 @@ class Calendar extends React.Component {
     return (
       <div>
         <h2 className='w3-wide w3-center'>CALENDAR</h2>
-        <button className="w3-button w3-teal" onClick={this.handleOpenModal}>Add Event</button>
+        {this.props.uid && <button className="w3-button w3-teal" onClick={this.handleOpenModal}>Add Event</button>} 
+  
         <EventList />
         <Modal
           isOpen={this.state.showModal}
@@ -57,6 +59,15 @@ class Calendar extends React.Component {
 
 }
 
+const mapStateToProps = state => {
+  return {
+    uid: state.auth.uid
+  }
+}
+
+export default connect(mapStateToProps)(Calendar)
+
+
 // const Calendar = (props) => 
 //   <div>
 //     <h1>Calendar</h1>
@@ -66,7 +77,6 @@ class Calendar extends React.Component {
 //   </div>
 
 
-export default Calendar
 
 
 

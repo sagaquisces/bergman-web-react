@@ -48,17 +48,21 @@ class EventListItem extends React.Component {
           <p><b>{title}</b></p>
           <p className='w3-opacity'>{moment(date).format('ddd DD MMM YYYY').to}</p>
           <p>{description}</p>
-          <button 
-            className="w3-button w3-teal w3-margin-bottom"
-            onClick={this.handleOpenModal}
-          >Edit Event
-          </button>
-          <button
-            className="w3-button w3-teal w3-margin-bottom"
-            onClick={() => {
-              dispatch(startRemoveEvent( {id} ))
-            }}
-          >Remove</button>
+          {this.props.uid && 
+            <div>
+              <button 
+                className="w3-button w3-teal w3-margin-bottom"
+                onClick={this.handleOpenModal}
+              >Edit Event
+              </button>
+              <button
+                className="w3-button w3-teal w3-margin-bottom"
+                onClick={() => {
+                  dispatch(startRemoveEvent( {id} ))
+                }}
+              >Remove</button>
+            </div>
+          }
         </div>
         
         <Modal
@@ -74,7 +78,11 @@ class EventListItem extends React.Component {
   }
 }
 
-export default connect()(EventListItem)
+const mapStateToProps = state => ({
+  uid: state.auth.uid
+})
+
+export default connect(mapStateToProps)(EventListItem)
 
 // const EventListItem = ({ dispatch, id, title, description, date }) => (
 // <div>

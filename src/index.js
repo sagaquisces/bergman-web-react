@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import App from './components/App'
 import configureStore from './store/configureStore'
 import { startSetEvents } from './actions/events'
+import { login, logout } from './actions/auth'
 // import { setTextFilter } from './actions/filters'
 import getVisibleEvents from './selectors/events'
 import './index.css'
@@ -46,9 +47,11 @@ store.dispatch(startSetEvents()).then(() => {
 
 auth.onAuthStateChanged((user) => {
   if (user) {
-    console.log('log in')
+    store.dispatch(login(user.uid))
+    console.log('uid', user.uid)
     
   } else {
+    store.dispatch(logout())
     console.log('log out')
   }
 })
