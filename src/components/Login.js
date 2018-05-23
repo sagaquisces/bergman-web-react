@@ -21,7 +21,7 @@ class Login extends React.Component {
     return (
       <div className="w3-card-4">
         <div class="w3-container w3-red">
-          <h2 style={{width:'500px'}}>{this.state.formMode === 'login' && 'Sign In' || this.state.formMode === 'forgot' && 'Forgot Password'}</h2>
+          <h2 style={{width:'500px'}}>{this.state.formMode === 'login' && 'Sign In' || this.state.formMode === 'forgot' && 'Get New Password'}</h2>
         </div>
         {this.state.error && <div className='w3-panel'>{this.state.error}</div>}
         {this.state.formMode === 'login' &&
@@ -60,22 +60,29 @@ class Login extends React.Component {
           />
         }
 
-        <button
-          onClick={() => {
-            this.setState({
-              formMode: 'forgot',
-            })
-          }}
-          class="w3-button w3-block w3-teal"
-        >FORGOT PASSWORD</button>
-        <button
-          onClick={() => {
-            this.setState({
-              formMode: 'forgot',
-            })
-          }}
-          class="w3-button w3-block w3-teal"
-        >CHANGE PASSWORD</button>
+        {this.state.formMode !== 'forgot' &&
+          <button
+            onClick={() => {
+              this.setState({
+                formMode: 'forgot',
+                error: '',
+              })
+            }}
+            class="w3-button w3-block w3-teal"
+          >GET NEW PASSWORD</button>
+        }
+
+        {this.state.formMode !== 'login' &&
+          <button
+            onClick={() => {
+              this.setState({
+                formMode: 'login',
+                error: '',
+              })
+            }}
+            class="w3-button w3-block w3-teal"
+          >RETURN TO SIGN IN</button>
+        }
       </div>
     )
   }
