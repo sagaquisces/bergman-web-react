@@ -1,12 +1,40 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import Modal from 'react-modal'
+import Login from './Login'
+import { connect } from 'react-redux'
+import { startLogout } from '../actions/auth'
+
+Modal.setAppElement('#root')
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginTop             : '20px',
+    marginRight           : '-50%',
+    minWidth              : '200px',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
 
 class Navigation extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      style: 'highlight'
+      style: 'highlight',
+      modalIsOpen: false
     }
+  }
+
+  handleOpenModal = () => {
+    this.setState({ showModal: true })
+  }
+
+  handleCloseModal = () => {
+    this.setState({ showModal: false })
   }
 
   render() {
@@ -24,7 +52,21 @@ class Navigation extends Component {
             <a href="#bio" className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}>BIO</a>
             <a href="#calendar" className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}>CALENDAR</a>
             <a href="#contact" className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}>CONTACT</a>
-            <a href="#login" className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}>LOGIN</a>
+            <button
+              className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}
+              onClick={this.handleOpenModal}
+            >
+              LOGIN
+            </button>
+            <Modal
+              isOpen={this.state.showModal}
+              contentLabel="Sign In"
+              style={customStyles}
+              onRequestClose={this.handleCloseModal}
+            >
+              <Login closeModal={this.handleCloseModal}/>
+            </Modal>
+            <button onClick={this.props.startLogout}>LOGOUT</button>
           </div>
         </div>
     
@@ -40,7 +82,11 @@ class Navigation extends Component {
   }
 }
 
-export default Navigation
+const mapDispatchToProps = (dispatch) => ({
+  startLogout: () => dispatch(startLogout())
+})
+
+export default connect(undefined, mapDispatchToProps)(Navigation)
 
 /* <div class="w3-top">
   <div class="w3-bar w3-black w3-card">

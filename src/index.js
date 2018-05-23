@@ -4,9 +4,11 @@ import { Provider } from 'react-redux'
 import App from './components/App'
 import configureStore from './store/configureStore'
 import { startSetEvents } from './actions/events'
-import { setTextFilter } from './actions/filters'
+// import { setTextFilter } from './actions/filters'
 import getVisibleEvents from './selectors/events'
 import './index.css'
+
+import { auth } from './firebase'
 
 const store = configureStore()
 
@@ -41,3 +43,19 @@ ReactDOM.render(<p>Loading...</p>, document.getElementById('root'))
 store.dispatch(startSetEvents()).then(() => {
   ReactDOM.render(jsx, document.getElementById('root'))
 })
+
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    console.log('log in')
+    
+  } else {
+    console.log('log out')
+  }
+})
+  
+
+// auth.doSignInWithEmailAndPassword("email", "123456")
+//   .then(() => alert("signedIn"))
+//   .catch((e) => alert("not signed in", e))
+
+
