@@ -1,16 +1,9 @@
 import * as firebase from 'firebase'
-
-const config = {
-  apiKey: 'AIzaSyDRCX2Yjn5ZMARkwswAeufqmgVcqNF15SE',
-  authDomain: 'bergman-web.firebaseapp.com',
-  databaseURL: 'https://bergman-web.firebaseio.com',
-  projectId: 'bergman-web',
-  storageBucket: '',
-  messagingSenderId: '1074229707301'
-}
+import constants from '../constants'
+const { firebaseConfig } = constants
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(config)
+  firebase.initializeApp(firebaseConfig)
 }
 
 const db = firebase.database()
