@@ -2,24 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import Modal from 'react-modal'
+import constants from '../constants'
+const { modalFormContainerStyle } = constants
 import EventList from './EventList'
 import EventListFilters from './EventListFilters'
 import AddEvent from './AddEvent'
 
 Modal.setAppElement('#root')
-
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginTop             : '20px',
-    marginRight           : '-50%',
-    minWidth              : '200px',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
 
 class Calendar extends React.Component {
   constructor() {
@@ -48,7 +37,7 @@ class Calendar extends React.Component {
         <Modal
           isOpen={this.state.showModal}
           contentLabel="Add event"
-          style={customStyles}
+          style={modalFormContainerStyle}
           onRequestClose={this.handleCloseModal}
         >
           <AddEvent closeModal={this.handleCloseModal}/>

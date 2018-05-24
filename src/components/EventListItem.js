@@ -2,21 +2,30 @@
 // description, title, date
 import React from 'react'
 import Modal from 'react-modal'
+import constants from '../constants'
+const { modalFormContainerStyle } = constants
 import EditEvent from './EditEvent'
 import moment from 'moment'
 import { connect } from 'react-redux'
 import { startRemoveEvent } from '../actions/events'
 
+// 
+
 const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginTop             : '20px',
-    marginRight           : '-50%',
-    minWidth              : '200px',
-    transform             : 'translate(-50%, -50%)'
+  content: {
+    border: '0',
+    borderRadius: '4px',
+    bottom: 'auto',
+    minHeight: '10rem',
+    left: '50%',
+    padding: '2rem',
+    position: 'fixed',
+    right: 'auto',
+    top: '50%',
+    transform: 'translate(-50%,-50%)',
+    minWidth: '20rem',
+    width: '80%',
+    maxWidth: '60rem'
   }
 }
 
@@ -68,7 +77,7 @@ class EventListItem extends React.Component {
         <Modal
           isOpen={this.state.showModal}
           contentLabel="Edit event"
-          style={customStyles}
+          style={modalFormContainerStyle}
           onRequestClose={this.handleCloseModal}
         >
           <EditEvent {...this.props} closeModal={this.handleCloseModal}/>

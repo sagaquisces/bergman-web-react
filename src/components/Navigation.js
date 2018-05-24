@@ -2,23 +2,12 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Modal from 'react-modal'
 import Login from './Login'
+import constants from '../constants'
+const { modalFormContainerStyle } = constants
 import { connect } from 'react-redux'
 import { startLogout } from '../actions/auth'
 
 Modal.setAppElement('#root')
-
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginTop             : '20px',
-    marginRight           : '-50%',
-    minWidth              : '200px',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
 
 class Navigation extends Component {
   constructor(props) {
@@ -37,6 +26,15 @@ class Navigation extends Component {
     this.setState({ showModal: false })
   }
 
+  handleSmallNav = () => {
+    const x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+  }
+
   render() {
     const borderNavStyle = 'w3-bar-item w3-btn w3-topbar w3-bottombar w3-border-black w3-hover-border-red'
     const highlightNavStyle = 'w3-bar-item w3-button w3-padding-large'
@@ -45,10 +43,22 @@ class Navigation extends Component {
       <div>
         <div class="w3-top">
           <div className="w3-bar w3-black w3-card">
-            <a className="w3-bar-item w3-btn w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i className="fa fa-bars"></i></a>
-
-
-            <a href="#" className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle)}>HOME</a>
+            <a 
+              onClick={this.handleSmallNav} 
+              className="w3-bar-item w3-btn w3-padding-large w3-hide-medium w3-hide-large w3-right" 
+              href="javascript:void(0)" 
+              title="Toggle Navigation Menu"
+            >
+              <i className="fa fa-bars"></i>
+            </a>
+            <a 
+              href="#"
+              onClick={() => {
+                const x = document.getElementById("navDemo");
+                x.className = x.className.replace(" w3-show", "")
+              }}
+              className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle)}
+            >HOME</a>
             <a href="#bio" className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}>BIO</a>
             <a href="#calendar" className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}>CALENDAR</a>
             <a href="#contact" className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle) + ' w3-hide-small'}>CONTACT</a>
@@ -71,21 +81,56 @@ class Navigation extends Component {
                 <Modal
                   isOpen={this.state.showModal}
                   contentLabel="Sign In"
-                  style={customStyles}
+                  style={modalFormContainerStyle}
                   onRequestClose={this.handleCloseModal}
                 >
                   <Login closeModal={this.handleCloseModal}/>
                 </Modal>
               </div>
             }
-            </div>
+          </div>
         </div>
     
-        <div id="navDemo" className="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style={{marginTop:'46px'}}>
-          <a href="#bio" className="w3-bar-item w3-btn w3-padding-large">HOME</a>
-          <a href="#calendar" className="w3-bar-item w3-btn w3-padding-large">BIO</a>
-          <a href="#contact" className="w3-bar-item w3-btn w3-padding-large">CALENDAR</a>
-          <a href="#" className="w3-bar-item w3-btn w3-padding-large">CONTACT</a>
+        <div 
+          id="navDemo" 
+          className="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" 
+          style={{marginTop:'46px'}}
+          
+        >
+          <a href="#bio" className="w3-bar-item w3-button w3-padding-large"
+            onClick={this.handleSmallNav} 
+          >BIO</a>
+          <a href="#calendar" className="w3-bar-item w3-button w3-padding-large"
+            onClick={this.handleSmallNav} 
+          >CALENDAR</a>
+          <a href="#contact" className="w3-bar-item w3-button w3-padding-large"
+            onClick={this.handleSmallNav} 
+          >CONTACT</a>
+
+          {this.props.uid ? 
+              <button
+                className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle)}
+                onClick={() => {this.props.startLogout(); this.handleSmallNav()}}
+              >
+                LOGOUT
+              </button> :
+              <div>
+                <button
+                  className={(this.state.style === 'highlight'?highlightNavStyle:borderNavStyle)}
+                  onClick={() => {this.handleOpenModal(); this.handleSmallNav()}}
+                >
+                  LOGIN
+                </button>
+                <Modal
+                  isOpen={this.state.showModal}
+                  contentLabel="Sign In"
+                  style={modalFormContainerStyle}
+                  onRequestClose={this.handleCloseModal}
+                >
+                  <Login closeModal={this.handleCloseModal}/>
+                </Modal>
+              </div>
+            }
         </div>
     
       </div>
