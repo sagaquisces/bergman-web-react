@@ -12,12 +12,6 @@ module.exports = {
   },
   devtool: 'inline-source-map',
 
-  devServer: {
-    contentBase: './build',
-    port: 3000,
-    publicPath: '/'
-  },
-
   module: {
     rules: [
       {
